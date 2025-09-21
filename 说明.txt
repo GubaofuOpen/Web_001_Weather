@@ -1,0 +1,30 @@
+说明：
+
+AI提问：
+用 HTML + CSS + JavaScript，做一个静态登录页，并给出测试示例
+
+AI回答：
+创建静态登录页面
+使用 HTML, CSS 和 JavaScript 构建一个简单的登录界面
+章节一：项目准备与HTML基础结构
+•创建项目文件夹，包含index.html, styles.css, script.js三个文件。
+•在index.html中构建基本的HTML框架。
+
+章节二：设计登录表单
+•添加用户名和密码输入框以及提交按钮。
+•使用CSS美化表单元素，如调整字体大小、颜色、间距等。
+
+章节三：实现表单验证
+•利用JavaScript对用户输入进行前端验证，确保不为空且格式正确。
+•为用户提供即时反馈，例如错误提示信息。
+
+章节四：测试与优化
+•通过不同浏览器（Chrome, Firefox）测试登录页的兼容性和响应速度。
+•根据测试结果调整样式或脚本，提升用户体验。
+
+
+测试方法：
+	确保文件在同一目录：将 index.html、styles.css 和 script.js 放在同一个文件夹中。
+	方法一：使用本地服务器（推荐）：直接双击 index.html 可能因浏览器安全策略导致 JavaScript 无法正常工作。建议使用：
+	方法二：VS Code 安装 Live Server 插件，右键 index.html 选择 "Open with Live Server"。
+	方法三：使用 Python 服务，在文件所在目录打开命令行，输入 python -m http.server 8000，然后在浏览器访问 http://localhost:8000。
