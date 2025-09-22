@@ -1,4 +1,11 @@
 // functions/submit-form.js
+// 你需要先通过 npm 安装 supabase-js 并配置环境变量
+const { createClient } = require('@supabase/supabase-js')
+
+const supabaseUrl = process.env.SUPABASE_URL
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 exports.handler = async (event, context) => {
   try {
     // 只接受 POST 请求
@@ -23,6 +30,19 @@ exports.handler = async (event, context) => {
 
     // 这里可以保存到数据库或发送邮件
     console.log('收到表单:', { name, email, message });
+
+ // 保存到 Supabase 数据库
+    const { data, error } = await supabase
+      .from('contacts') // 假设你有一个叫 contacts 的表
+      .insert([{ name, email, message, submitted_at: new Date().toISOString() }])
+
+    if (error) {
+      console.error('数据库错误:', error)
+      return { statusCode: 500, body: JSON.stringify({ error: 'Failed to save data' }) }
+    }
+
+    console.log('数据已保存:', data)
+
 
     return {
       statusCode: 200,
