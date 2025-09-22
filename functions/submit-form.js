@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
 
  // 保存到 Supabase 数据库
     const { data, error } = await supabase
-      .from('contacts') // 假设你有一个叫 contacts 的表
+      .from('test_contacts') // 假设你有一个叫 contacts 的表
       .insert([{ name, email, message, submitted_at: new Date().toISOString() }])
 
     if (error) {
