@@ -1,0 +1,23 @@
+{
+  "name": "001_weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GubaofuOpen/Web_001_Weather.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GubaofuOpen/Web_001_Weather/issues"
+  },
+  "homepage": "https://github.com/GubaofuOpen/Web_001_Weather#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4"
+  }
+}
