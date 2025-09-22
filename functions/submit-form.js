@@ -10,7 +10,7 @@ exports.handler = async (event, context) =>
         statusCode: 405,
         body: JSON.stringify({ error: 'Method not allowed' })
       };
-    }
+  }
 
     // 解析表单数据
     const body = JSON.parse(event.body);
@@ -34,14 +34,12 @@ exports.handler = async (event, context) =>
         data: { name, email }
       })
     };
-
-  } 
+  }
   catch (error) 
   {
-    return 
-	{
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' })
-    };
+    return {
+    statusCode: 500,
+    body: JSON.stringify({ error: 'Internal server error' })
+  };
   }
 };
