@@ -8,7 +8,7 @@
   <h1>表单提交与天气查询</h1>
 
   <!-- 表单提交 -->
-  <h2>提交表单_v1.0</h2>
+  <h2>提交表单_v1.1</h2>
   <form id="contactForm">
     <input type="text" id="name" placeholder="姓名" required /><br/>
     <input type="email" id="email" placeholder="邮箱" required /><br/>
@@ -40,7 +40,14 @@
       });
 
       const data = await res.json();
-      document.getElementById('formResult').textContent = data.message || data.data || data.error;
+	  try
+	  {
+		document.getElementById('formResult').textContent = data.message || data.data || data.error;
+	  }
+	  catch(error)
+	  {
+		document.getElementById('formResult').textContent = error;
+	  }
     });
 
     // 获取天气
