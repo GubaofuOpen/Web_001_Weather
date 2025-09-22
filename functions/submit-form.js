@@ -1,16 +1,13 @@
 // functions/submit-form.js
-exports.handler = async (event, context) => 
-{
-  try 
-  {
+exports.handler = async (event, context) => {
+  try {
     // 只接受 POST 请求
-    if (event.httpMethod !== 'POST') 
-	{
+    if (event.httpMethod !== 'POST') {
       return {
         statusCode: 405,
         body: JSON.stringify({ error: 'Method not allowed' })
       };
-  }
+    }
 
     // 解析表单数据
     const body = JSON.parse(event.body);
@@ -29,17 +26,16 @@ exports.handler = async (event, context) =>
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ 
-        message: '表单提交成功！', 
+      body: JSON.stringify({
+        message: '表单提交成功！',
         data: { name, email }
       })
     };
   }
-  catch (error) 
-  {
+  catch (error) {
     return {
-    statusCode: 500,
-    body: JSON.stringify({ error: 'Internal server error' })
-  };
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Internal server error' })
+    };
   }
 };

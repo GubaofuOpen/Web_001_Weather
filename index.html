@@ -1,83 +1,79 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8" />
   <title>Netlify Functions 示例</title>
 </head>
+
 <body>
   <h1>表单提交与天气查询</h1>
 
   <!-- 表单提交 -->
   <h2>提交表单_v1.2</h2>
   <form id="contactForm">
-    <input type="text" id="name" placeholder="姓名" required /><br/>
-    <input type="email" id="email" placeholder="邮箱" required /><br/>
-    <textarea id="message" placeholder="留言"></textarea><br/>
+    <input type="text" id="name" placeholder="姓名" required /><br />
+    <input type="email" id="email" placeholder="邮箱" required /><br />
+    <textarea id="message" placeholder="留言"></textarea><br />
     <button type="submit">提交</button>
   </form>
   <p id="formResult"></p>
 
   <!-- 天气查询 -->
-  <h2>查询天气</h2>
-  <input type="text" id="city" placeholder="城市名称" value="Beijing" />
+  <h2>查询天气_v1.0</h2>
+  <input type="text" id="city" placeholder="城市名称" value="ShangHai" />
   <button onclick="getWeather()">查询天气</button>
   <div id="weatherResult"></div>
 
   <script>
     // 提交表单
-      document.getElementById('contactForm').addEventListener('submit', async (e) => {
-          e.preventDefault();
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-          const formData = {
-              name: document.getElementById('name').value,
-              email: document.getElementById('email').value,
-              message: document.getElementById('message').value
-          };
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
 
-          const res = await fetch('/.netlify/functions/submit-form', {
-              method: 'POST',
-              body: JSON.stringify(formData)
-          });
+      const res = await fetch('/.netlify/functions/submit-form', {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
 
-          const data = await res.json();
-          try
-          {
-              //document.getElementById('formResult').textContent = data.message || data.error;
-              //document.getElementById('formResult').textContent = `${data.message}，${data.data?.name}, ${data.data?.email}`;
+      const data = await res.json();
+      try {
+        //document.getElementById('formResult').textContent = data.message || data.error;
+        //document.getElementById('formResult').textContent = `${data.message}，${data.data?.name}, ${data.data?.email}`;
 
-              const resultElement = document.getElementById('formResult');
-              if (data.message)
-              {
-                  resultElement.innerHTML = `
+        const resultElement = document.getElementById('formResult');
+        if (data.message) {
+          resultElement.innerHTML = `
     <span style="color: green;">${data.message}</span><br>
     <strong>姓名:</strong> ${data.data.name}<br>
     <strong>邮箱:</strong> ${data.data.email}
   `;
-              }
-              else if (data.error)
-              {
-                  resultElement.innerHTML = `<span style="color: red;">${data.error}</span>`;
-              }
-          }
-          catch (error) {
-              document.getElementById('formResult').textContent = error;
-          }
-      });
+        }
+        else if (data.error) {
+          resultElement.innerHTML = `<span style="color: red;">${data.error}</span>`;
+        }
+      }
+      catch (error) {
+        document.getElementById('formResult').textContent = error;
+      }
+    });
 
     // 获取天气
-    async function getWeather() 
-	{
+    async function getWeather() {
       const city = document.getElementById('city').value;
       const res = await fetch('//.netlify/functions/get-weather?city=${city}');
       const data = await res.json();
 
       const weatherDiv = document.getElementById('weatherResult');
-      if (data.error) 
-	  {
+      if (data.error) {
         weatherDiv.innerHTML = `<p style="color:red">${data.error}</p>`;
-      } 
-	  else 
-	  {
+      }
+      else {
         weatherDiv.innerHTML = `
           <h3>${data.city} 天气</h3>
           <p>温度: ${data.temperature}°C</p>
@@ -88,4 +84,5 @@
     }
   </script>
 </body>
+
 </html>
