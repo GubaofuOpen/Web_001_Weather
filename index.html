@@ -25,7 +25,8 @@
 
   <script>
     // 提交表单
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    document.getElementById('contactForm').addEventListener('submit', async (e) => 
+	{
       e.preventDefault();
       const formData = {
         name: document.getElementById('name').value,
@@ -39,19 +40,23 @@
       });
 
       const data = await res.json();
-      document.getElementById('formResult').textContent = data.message || data.error;
+      document.getElementById('formResult').textContent = data.message || data.data || data.error;
     });
 
     // 获取天气
-    async function getWeather() {
+    async function getWeather() 
+	{
       const city = document.getElementById('city').value;
       const res = await fetch('//.netlify/functions/get-weather?city=${city}');
       const data = await res.json();
 
       const weatherDiv = document.getElementById('weatherResult');
-      if (data.error) {
+      if (data.error) 
+	  {
         weatherDiv.innerHTML = `<p style="color:red">${data.error}</p>`;
-      } else {
+      } 
+	  else 
+	  {
         weatherDiv.innerHTML = `
           <h3>${data.city} 天气</h3>
           <p>温度: ${data.temperature}°C</p>

@@ -1,8 +1,11 @@
 // functions/submit-form.js
-exports.handler = async (event, context) => {
-  try {
+exports.handler = async (event, context) => 
+{
+  try 
+  {
     // 只接受 POST 请求
-    if (event.httpMethod !== 'POST') {
+    if (event.httpMethod !== 'POST') 
+	{
       return {
         statusCode: 405,
         body: JSON.stringify({ error: 'Method not allowed' })
@@ -32,8 +35,11 @@ exports.handler = async (event, context) => {
       })
     };
 
-  } catch (error) {
-    return {
+  } 
+  catch (error) 
+  {
+    return 
+	{
       statusCode: 500,
       body: JSON.stringify({ error: 'Internal server error' })
     };
