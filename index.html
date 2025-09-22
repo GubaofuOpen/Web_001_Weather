@@ -20,7 +20,7 @@
   <p id="formResult"></p>
 
   <!-- 天气查询 -->
-  <h2>查询天气_v1.1</h2>
+  <h2>查询天气_v1.2</h2>
   <input type="text" id="city" placeholder="城市名称" value="ShangHai" />
   <button onclick="getWeather()">查询天气</button>
   <div id="weatherResult"></div>
@@ -66,7 +66,7 @@
     // 获取天气
     async function getWeather() {
       const city = document.getElementById('city').value;
-      const res = await fetch('//.netlify/functions/get-weather?city=${city}');
+      const res = await fetch(`/.netlify/functions/get-weather?city=${city}`);
       const data = await res.json();
 
       const weatherDiv = document.getElementById('weatherResult');
